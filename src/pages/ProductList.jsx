@@ -2,19 +2,21 @@ import React, { useEffect } from 'react'
 import {Box,HStack,VStack,Button} from '@chakra-ui/react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchProducts } from '@/redux/actions/actions'
+import { useNavigate } from 'react-router-dom'
+import Cart from './Cart'
 
 const ProductList = () => {
-    const products = useSelector((state)=>state.products)
+    const products = useSelector((state)=>state.products.products)
     const loading = useSelector((state)=>state.loading)
     const error = useSelector((state)=>state.error)
     const dispatch = useDispatch()
-
+    const navigate = useNavigate()
     useEffect(()=>{
         dispatch(fetchProducts())
     },[])
 
     const handleAddtoCart=()=>{
-        
+        navigate("/cart")
     }
     return (
     <Box>
@@ -26,8 +28,9 @@ const ProductList = () => {
                 <div key={product.id} style={{width:"50%"}} >
                     <img src={product.image} alt={product.name}/>
                        <h2> Title : {product.title}</h2>
-                    <p>Price : {product.price}</p> 
-                    <Button onClick={handleAddtoCart}>Add to Cart</Button>
+                    <p>Price : {product.price}</p>
+                            <Button onClick={handleAddtoCart}>Add to Cart</Button>
+
                 </div>
             )
         })}   
