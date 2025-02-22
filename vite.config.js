@@ -4,5 +4,7 @@ import tsconfigPaths from "vite-tsconfig-paths"
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: "/M4Mock1Evals",
+
   plugins: [react(), tsconfigPaths()],
 })
